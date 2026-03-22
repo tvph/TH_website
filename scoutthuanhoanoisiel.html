@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Groupe Scouts Thuận Hoá – Marne-La-Vallée Noisiel</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-dark: #1a4a2e;
+    --green-mid: #2d6a44;
+    --green-light: #4a9460;
+    --gold: #c8922a;
+    --gold-light: #e8b84b;
+    --cream: #faf7f2;
+    --text-dark: #1c1c1a;
+    --text-mid: #4a4a44;
+    --text-light: #7a7a72;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(26, 74, 46, 0.97);
+    backdrop-filter: blur(8px);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    border-bottom: 1px solid rgba(200,146,42,0.3);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--gold-light);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.85);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background:
+      linear-gradient(160deg, rgba(26,74,46,0.88) 0%, rgba(26,74,46,0.65) 60%, rgba(26,74,46,0.4) 100%),
+      url('https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=1600&q=80') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 100px 8% 80px;
+  }
+  .hero-inner { max-width: 700px; }
+  .hero-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .hero h2 {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(255,255,255,0.75);
+    font-weight: 300;
+    margin-bottom: 32px;
+    font-style: italic;
+    letter-spacing: 0.01em;
+  }
+  .hero-quote {
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 48px;
+  }
+  .hero-quote p {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.05rem;
+    font-style: italic;
+  }
+  .hero-quote cite {
+    color: var(--gold-light);
+    font-size: 0.85rem;
+    font-style: normal;
+    font-weight: 500;
+  }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: #fff;
+    border: 2px solid var(--gold);
+  }
+  .btn-primary:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    transform: translateY(-2px);
+  }
+  .btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.6);
+    margin-left: 14px;
+  }
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: #fff;
+  }
+
+  /* SECTIONS */
+  section { padding: 90px 8%; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    color: var(--green-dark);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .section-subtitle {
+    font-size: 1rem;
+    color: var(--text-mid);
+    max-width: 560px;
+    margin-bottom: 56px;
+    font-weight: 300;
+  }
+
+  /* INSCRIPTION */
+  .inscription-section { background: var(--white); }
+  .inscription-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(26,74,46,0.12);
+    max-width: 900px;
+  }
+  .inscription-img {
+    background: url('https://images.unsplash.com/photo-1503676382389-4809596d5290?w=800&q=80') center/cover;
+    min-height: 300px;
+  }
+  .inscription-content {
+    background: var(--green-dark);
+    padding: 48px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .inscription-content .section-title { color: #fff; margin-bottom: 12px; }
+  .inscription-content p { color: rgba(255,255,255,0.75); font-size: 0.95rem; margin-bottom: 28px; font-weight: 300; }
+  .inscription-content .btn-primary { align-self: flex-start; }
+
+  /* CAMPS */
+  .camps-section { background: var(--cream); }
+  .camps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .camp-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .camp-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 36px rgba(26,74,46,0.14);
+  }
+  .camp-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .camp-date-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(26,74,46,0.9);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+  .camp-body { padding: 24px 22px; }
+  .camp-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--green-dark);
+    margin-bottom: 6px;
+  }
+  .camp-body p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+  .camp-body a {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    border-bottom: 1.5px solid var(--gold);
+    padding-bottom: 1px;
+    transition: color 0.2s;
+  }
+  .camp-body a:hover { color: var(--green-mid); border-color: var(--green-mid); }
+
+  /* CULTURE */
+  .culture-section {
+    background: var(--green-dark);
+    display: flex;
+    align-items: center;
+    gap: 80px;
+  }
+  .culture-text { flex: 1; }
+  .culture-text .section-label { color: var(--gold-light); }
+  .culture-text .section-title { color: #fff; }
+  .culture-text .section-subtitle { color: rgba(255,255,255,0.65); }
+  .culture-img-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+    min-height: 380px;
+  }
+  .culture-img-grid .img-block {
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+  }
+  .culture-img-grid .img-block:first-child {
+    grid-row: span 2;
+  }
+
+  /* EVENTS */
+  .events-section { background: var(--white); }
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 780px;
+  }
+  .event-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 22px;
+    border: 1px solid #e8e4dc;
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .event-card:hover {
+    border-color: var(--green-light);
+    box-shadow: 0 4px 16px rgba(26,74,46,0.08);
+  }
+  .event-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background: var(--green-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 20px;
+  }
+  .event-info h4 { font-size: 0.95rem; font-weight: 600; color: var(--green-dark); margin-bottom: 4px; }
+  .event-info p { font-size: 0.8rem; color: var(--text-light); }
+
+  /* FOOTER */
+  footer {
+    background: #111810;
+    color: rgba(255,255,255,0.55);
+    padding: 48px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+  }
+  footer p { font-size: 13px; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold-light); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .camps-grid { grid-template-columns: 1fr; }
+    .inscription-card { grid-template-columns: 1fr; }
+    .inscription-img { min-height: 220px; }
+    .culture-section { flex-direction: column; gap: 40px; }
+    .culture-img-grid { width: 100%; }
+    .events-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Scouts Thuận Hoá · Noisiel</a>
+  <ul class="nav-links">
+    <li><a href="#inscriptions">Inscriptions</a></li>
+    <li><a href="#camps">Camps</a></li>
+    <li><a href="#culture">Notre groupe</a></li>
+    <li><a href="#evenements">Événements</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-badge">Marne-La-Vallée · Noisiel</span>
+    <h1>Liên Đoàn Hướng Đạo<br>Thuận Hoá Pháp</h1>
+    <h2>Groupe Scouts Thuận Hoá – Marne-La-Vallée</h2>
+    <div class="hero-quote">
+      <p>« Le bonheur ne vient pas à ceux qui l'attendent assis. »</p>
+      <cite>— Robert Baden-Powell</cite>
+    </div>
+    <a href="#inscriptions" class="btn btn-primary">Ghi danh / S'inscrire</a>
+    <a href="#camps" class="btn btn-outline">Nos camps</a>
+  </div>
+</section>
+
+<!-- INSCRIPTION -->
+<section class="inscription-section" id="inscriptions">
+  <div class="section-label">Ghi danh sinh hoạt</div>
+  <h2 class="section-title">Inscriptions au groupe<br>pour l'année</h2>
+  <p class="section-subtitle">Rejoignez notre groupe scout vietnamien basé à Marne-La-Vallée et vivez des aventures inoubliables tout en découvrant la culture vietnamienne.</p>
+  <div class="inscription-card">
+    <div class="inscription-img"></div>
+    <div class="inscription-content">
+      <h2 class="section-title">Ghi danh sinh hoạt / Inscription</h2>
+      <p>Inscrivez-vous pour rejoindre le groupe et participer aux activités tout au long de l'année scolaire.</p>
+      <a href="https://scoutthuanhoanoisiel.fr/inscriptions-de-rentree/" class="btn btn-primary">Ghi danh / S'inscrire →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPS -->
+<section class="camps-section" id="camps">
+  <div class="section-label">Các trại</div>
+  <h2 class="section-title">Nos camps</h2>
+  <p class="section-subtitle">Trois camps par an pour se retrouver, apprendre et grandir ensemble en pleine nature.</p>
+  <div class="camps-grid">
+
+    <div class="camp-card">
+      <div class="camp-img" style="background-image: url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&q=80');">
+        <span class="camp-date-badge">24 – 26 oct. 2025</span>
+      </div>
+      <div class="camp-body">
+        <h3>Trại Các Thánh</h3>
+        <p>Camp de Toussaint</p>
+        <a href="https://scoutthuanhoanoisiel.fr/camp-de-toussaint">Ghi danh / S'inscrire →</a>
+      </div>
+    </div>
+
+    <div class="camp-card">
+      <div class="camp-img" style="background-image: url('https://images.unsplash.com/photo-1445307806294-bff7f67ff225?w=600&q=80');">
+        <span class="camp-date-badge">25 – 27 avr. 2026</span>
+      </div>
+      <div class="camp-body">
+        <h3>Trại Phục Sinh</h3>
+        <p>Camp de Pâques</p>
+        <a href="https://scoutthuanhoanoisiel.fr/camp-de-paques">Ghi danh / S'inscrire →</a>
+      </div>
+    </div>
+
+    <div class="camp-card">
+      <div class="camp-img" style="background-image: url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=600&q=80');">
+        <span class="camp-date-badge">3 – 13 août 2026</span>
+      </div>
+      <div class="camp-body">
+        <h3>Trại Hè</h3>
+        <p>Camp d'Été</p>
+        <a href="https://scoutthuanhoanoisiel.fr/camp-dete">Ghi danh / S'inscrire →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CULTURE -->
+<section class="culture-section" id="culture">
+  <div class="culture-text">
+    <div class="section-label">Văn hóa Việt Nam</div>
+    <h2 class="section-title">Culture<br>vietnamienne</h2>
+    <p class="section-subtitle">Notre groupe unit la tradition scoute et la culture vietnamienne. Nous transmettons les valeurs de notre heritage tout en nous engageant dans la communauté française.</p>
+    <a href="#evenements" class="btn btn-primary" style="margin-top:8px">Thêm / En savoir plus →</a>
+  </div>
+  <div class="culture-img-grid">
+    <div class="img-block" style="background-image: url('https://images.unsplash.com/photo-1609743522653-52354461eb27?w=600&q=80');"></div>
+    <div class="img-block" style="background-image: url('https://images.unsplash.com/photo-1597673030062-0a0f1a801a31?w=600&q=80');"></div>
+    <div class="img-block" style="background-image: url('https://images.unsplash.com/photo-1542708779-4b3c8c0ae9c6?w=600&q=80');"></div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events-section" id="evenements">
+  <div class="section-label">Các sinh hoạt</div>
+  <h2 class="section-title">Prochains événements<br>du groupe</h2>
+  <p class="section-subtitle">Retrouvez toutes les activités à venir et ne manquez aucun rendez-vous du groupe.</p>
+  <div class="events-grid">
+    <div class="event-card">
+      <div class="event-icon">🏕️</div>
+      <div class="event-info">
+        <h4>Camp de Toussaint</h4>
+        <p>24 – 26 octobre 2025 · Inscription ouverte</p>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-icon">🌸</div>
+      <div class="event-info">
+        <h4>Camp de Pâques</h4>
+        <p>25 – 27 avril 2026 · Inscription ouverte</p>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-icon">☀️</div>
+      <div class="event-info">
+        <h4>Camp d'Été</h4>
+        <p>3 – 13 août 2026 · Inscription à venir</p>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-icon">🎋</div>
+      <div class="event-info">
+        <h4>Activités régulières</h4>
+        <p>Retrouvez le calendrier complet sur notre site</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Scouts Thuận Hoá · Noisiel</div>
+  <p>Liên Đoàn Hướng Đạo Thuận Hoá Marne-La-Vallée · France</p>
+  <div class="footer-links">
+    <a href="#inscriptions">Inscriptions</a>
+    <a href="#camps">Camps</a>
+    <a href="#culture">Notre groupe</a>
+  </div>
+</footer>
+
+</body>
+</html>
